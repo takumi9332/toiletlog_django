@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -92,52 +93,75 @@ class Toilet(models.Model):
         null=False,
     )
 
+    title = models.CharField(
+        max_length=255,
+        blank=False,
+        null=False,
+        verbose_name='タイトル',
+    )
+
     prefecture = models.IntegerField(
         choices=Prefecture.choices,
         default=0,
+        verbose_name='都道府県',
     )
 
     city = models.CharField(
         blank=False,
         null=False,
         max_length=255,
+        verbose_name='市区町村',
     )
 
     address = models.CharField(
         blank=False,
         null=False,
         max_length=255,
+        verbose_name='番地',
     )
 
     building = models.CharField(
         blank=True,
         max_length=255,
+        verbose_name='建物名',
     )
 
     sex = models.IntegerField(
         choices=Sex.choices,
         default=0,
+        verbose_name='何トイレ',
     )
 
     type = models.IntegerField(
         choices=Type.choices,
         default=0,
+        verbose_name='種類',
     )
 
     washlet = models.IntegerField(
         choices=Washlet.choices,
         default=0,
+        verbose_name='ウォシュレット',
     )
 
     clean = models.IntegerField(
         choices=Clean.choices,
         default=0,
+        verbose_name='綺麗さ',
     )
 
     info = models.TextField(
         blank=True,
         max_length=1000,
+        verbose_name='情報',
+    )
+
+    image = models.ImageField(
+        upload_to='images',
+        blank=True,
+        null=True,
+        verbose_name='トイレ画像',
     )
 
     def __str__(self):
-        return self.updated
+        return self.image
