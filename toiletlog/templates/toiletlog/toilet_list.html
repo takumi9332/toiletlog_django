@@ -1,0 +1,9 @@
+{% extends "toiletlog/base.html" %}
+{% block main %}
+<h2>投稿一覧</h2>
+<ul>
+  {% for toilet in object_list %}
+  <li><a href="{% url 'detail' toilet.id %}">{{ toilet.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 
 
@@ -164,4 +163,4 @@ class Toilet(models.Model):
     )
 
     def __str__(self):
-        return self.image
+        return self.title

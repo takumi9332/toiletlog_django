@@ -1,0 +1,18 @@
+{% extends "toiletlog/base.html" %}
+{% load l10n %}
+{% block main %}
+<h2>{{ object.title }}</h2>
+<p><time>{{ object.updated|localize }}</time></p>
+<div>
+  {{ object.get_prefecture_display }}
+  {{ object.city }}
+  {{ object.address }}
+  {{ object.building }}
+  {{ object.get_sex_display }}
+  {{ object.get_type_display }}
+  {{ object.get_washlet_display }}
+  {{ object.get_clean_display }}
+  {{ object.info }}
+  {{ object.image }}
+</div>
+{% endblock %}

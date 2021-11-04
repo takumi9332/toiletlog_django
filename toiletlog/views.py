@@ -1,3 +1,11 @@
-from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
-# Create your views here.
+from toiletlog.models import Toilet
+
+
+class Index(ListView):
+    model = Toilet
+
+
+class Detail(DetailView):
+    model = Toilet
