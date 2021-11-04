@@ -6,4 +6,5 @@
   <li><a href="{% url 'detail' toilet.id %}">{{ toilet.title }}</a></li>
   {% endfor %}
 </ul>
+<p><a href="{% url 'create' %}">新規投稿</a></p>
 {% endblock %}
