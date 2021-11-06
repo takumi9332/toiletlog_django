@@ -15,14 +15,15 @@ class Create(CreateView):
     model = Toilet
 
     fields = ["title", "prefecture", "city", "address", "building",
-              "sex", "type", "washlet", "clean", "info", "image"]
+              "sex", "type", "washlet", "cleanliness", "info", "image"]
 
 
 class Update(UpdateView):
+    template_name = 'toiletlog/toilet_update_form.html'
     model = Toilet
 
     fields = ["title", "prefecture", "city", "address", "building",
-              "sex", "type", "washlet", "clean", "info", "image"]
+              "sex", "type", "washlet", "cleanliness", "info", "image"]
 
 
 class Delete(DeleteView):

@@ -1,5 +1,14 @@
 {% extends "toiletlog/base.html" %}
 {% block main %}
+{% if user.username %}
+<p>{{ user.username }}さん、こんにちは！</p>
+{% else %}
+<p>ゲストさん、こんにちは！</p>
+{% endif %}
+<p><a href="{% url 'users:login' %}">ログイン</a></p>
+<p><a href="{% url 'users:logout' %}">ログアウト</a></p>
+
+
 <h2>投稿一覧</h2>
 <ul>
   {% for toilet in object_list %}

@@ -11,9 +11,11 @@
   {{ object.get_sex_display }}
   {{ object.get_type_display }}
   {{ object.get_washlet_display }}
-  {{ object.get_clean_display }}
+  {{ object.get_cleanliness_display }}
   {{ object.info }}
-  {{ object.image }}
+  {% if object.image %}
+  <img src="{{ object.image.url }}" style="width: 300px;" />
+  {% endif %}
 </div>
 <p><a href="{% url 'update' object.pk %}">編集</a></p>
 <p><a href="{% url 'delete' object.pk %}">削除</a></p>

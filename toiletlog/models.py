@@ -71,7 +71,7 @@ class Washlet(models.IntegerChoices):
     BOTH = 2, ('両方あり')
 
 
-class Clean(models.IntegerChoices):
+class Cleanliness(models.IntegerChoices):
     GOOD = 0, ('すごく綺麗')
     LITTLE_GOOD = 1, ('やや綺麗')
     LITTLE_BAD = 2, ('やや汚い')
@@ -144,8 +144,8 @@ class Toilet(models.Model):
         verbose_name='ウォシュレット',
     )
 
-    clean = models.IntegerField(
-        choices=Clean.choices,
+    cleanliness = models.IntegerField(
+        choices=Cleanliness.choices,
         default=0,
         verbose_name='綺麗さ',
     )
