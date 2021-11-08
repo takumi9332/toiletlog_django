@@ -3,8 +3,11 @@ from django.contrib.auth.forms import (
 )
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-
 from .models import User
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 
 class UserCreationForm(forms.ModelForm):
@@ -49,3 +52,15 @@ class LoginForm(AuthenticationForm):
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
             field.widget.attrs['placeholder'] = field.label
+
+
+class SignUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ("username", "email", "password1", "password2")
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.email = self.cleaned_data["email"]
+        user.save()
+        return user
