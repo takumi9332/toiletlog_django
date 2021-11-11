@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse_lazy
+from django.core import validators
 
 
 class Prefecture(models.IntegerChoices):
@@ -102,6 +103,7 @@ class Toilet(models.Model):
 
     prefecture = models.IntegerField(
         choices=Prefecture.choices,
+        validators=[validators.MinValueValidator(1)],
         default=0,
         verbose_name='都道府県',
     )
