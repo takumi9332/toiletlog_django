@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse_lazy
 from django.core import validators
@@ -170,3 +171,20 @@ class Toilet(models.Model):
 
     def get_absolute_url(self):
         return reverse_lazy("detail", args=[self.id])
+
+
+def validate_rate(value):
+    if value > 0 or value <= 5:
+        raise ValidationError('1~5で評価してください')
+
+
+class Comment(models.Model):
+    rate = models.IntegerField(validators=[validate_rate])
+    text = models.TextField(max_length=100)
+    target = models.ForeignKey(
+        Toilet, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(
+        auto_now=True,
+        editable=False,
+        blank=False,
+        null=False,)
