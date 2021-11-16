@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import fields, widgets
-from .models import Prefecture, Toilet
+from .models import Comment, Prefecture, Toilet
 
 
 class ToiletForm(forms.ModelForm):
@@ -15,3 +15,9 @@ class ToiletForm(forms.ModelForm):
             'washlet': forms.RadioSelect(),
             'cleanliness': forms.RadioSelect(),
         }
+
+
+class CommentCreateForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        exclude = ('target', 'created_at')

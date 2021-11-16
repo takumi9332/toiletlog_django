@@ -174,7 +174,7 @@ class Toilet(models.Model):
 
 
 def validate_rate(value):
-    if value > 0 or value <= 5:
+    if value < 1 or value > 5:
         raise ValidationError('1~5で評価してください')
 
 
@@ -182,9 +182,12 @@ class Comment(models.Model):
     rate = models.IntegerField(validators=[validate_rate])
     text = models.TextField(max_length=100)
     target = models.ForeignKey(
-        Toilet, on_delete=models.CASCADE)
+        Toilet, on_delete=models.CASCADE, null=False)
     created_at = models.DateTimeField(
         auto_now=True,
         editable=False,
         blank=False,
         null=False,)
+
+    def __str__(self):
+        return self.text
